@@ -42,7 +42,7 @@
     font-weight:600;
   }
   a{color:inherit;}
-
+ 
   /* ---------- Header ---------- */
   header{
     display:flex;
@@ -87,8 +87,29 @@
     transition:border-color 0.2s;
   }
   nav a:hover{border-color:var(--turmeric);}
+  nav a[href^="tel"]{
+    color:var(--turmeric);
+    font-weight:700;
+  }
   @media (max-width:640px){ nav{display:none;} }
-
+ 
+  .phone-strip{
+    display:none;
+    background:var(--chili);
+    color:var(--ivory);
+    text-align:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.04em;
+    padding:10px 6vw;
+  }
+  .phone-strip a{
+    color:var(--ivory);
+    font-weight:700;
+    text-decoration:underline;
+  }
+  @media (max-width:640px){ .phone-strip{display:block;} }
+ 
   /* ---------- Hero ---------- */
   .hero{
     padding:9vw 6vw 7vw;
@@ -138,7 +159,7 @@
     transition:background 0.2s, color 0.2s;
   }
   .hero-cta:hover{background:transparent;color:var(--turmeric);border-color:var(--turmeric);}
-
+ 
   /* ---------- Menu ---------- */
   .menu{ padding:5vw 6vw 3vw; }
   .section-head{
@@ -149,7 +170,7 @@
   }
   .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);}
   .section-head .label{color:var(--turmeric);}
-
+ 
   .cards{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -191,7 +212,7 @@
   }
   .price-row .amt{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:1.8rem;}
   .price-row .per{font-family:'Space Grotesk',sans-serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#6b6b60;}
-
+ 
   .qty-row{
     display:flex; align-items:center; gap:10px;
     margin-top:20px;
@@ -223,7 +244,7 @@
   }
   .qty-row input:focus{outline:none;}
   .qty-unit{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;color:#8a8a7c;flex-shrink:0;}
-
+ 
   .card .subtotal{
     font-family:'Space Grotesk',sans-serif;
     font-size:0.85rem;
@@ -231,7 +252,7 @@
     color:#4a4a44;
   }
   .card .subtotal b{color:var(--ink);font-size:1rem;}
-
+ 
   .add-btn{
     margin-top:18px;
     background:var(--ink);
@@ -248,7 +269,44 @@
     transition:background 0.2s;
   }
   .add-btn:hover{background:var(--card-accent,var(--chili));}
-
+ 
+  /* ---------- Reviews ---------- */
+  .reviews{ padding:3vw 6vw 5vw; }
+  .review-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+  }
+  .review-card{
+    background:var(--leaf-deeper);
+    border:1px solid var(--line);
+    border-left:3px solid var(--turmeric);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+  }
+  .review-card .stars{
+    color:var(--turmeric);
+    letter-spacing:0.12em;
+    font-size:0.95rem;
+    margin-bottom:12px;
+  }
+  .review-card p{
+    font-family:'Literata',serif;
+    font-style:italic;
+    font-size:0.95rem;
+    line-height:1.6;
+    color:rgba(251,243,227,0.88);
+    margin:0;
+  }
+  .review-card .reviewer{
+    margin-top:14px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:rgba(251,243,227,0.5);
+  }
+ 
   /* ---------- Order / cart ---------- */
   .order-section{
     padding:5vw 6vw 8vw;
@@ -257,7 +315,7 @@
     gap:40px;
   }
   @media (max-width:860px){ .order-section{grid-template-columns:1fr;} }
-
+ 
   .cart-box, .form-box{
     background:var(--leaf-deeper);
     border:1px solid var(--line);
@@ -297,7 +355,7 @@
     font-family:'Big Shoulders Display',sans-serif;
   }
   .cart-total .amt{font-size:2rem;color:var(--turmeric);font-weight:900;}
-
+ 
   .form-box label{
     display:block;
     font-family:'Space Grotesk',sans-serif;
@@ -345,7 +403,7 @@
     margin-top:10px;
     line-height:1.5;
   }
-
+ 
   footer{
     padding:26px 6vw 40px;
     border-top:1px solid var(--line);
@@ -357,7 +415,7 @@
 </style>
 </head>
 <body>
-
+ 
 <header>
   <div class="brand-block">
     <div class="stamp"><span>KN</span><small>CATERING</small></div>
@@ -368,26 +426,53 @@
   </div>
   <nav>
     <a href="#menu">Menu</a>
+    <a href="#reviews">Reviews</a>
     <a href="#order">Order</a>
+    <a href="tel:+918668109314">📞 86681 09314</a>
   </nav>
 </header>
-
+<div class="phone-strip">Call / WhatsApp to order — <a href="tel:+918668109314">86681 09314</a></div>
+ 
 <section class="hero">
   <div class="label eyebrow">Home-cooked · Slow-dum · Serves by the kg</div>
   <h1>Biriyani, <em>weighed</em> to your table's appetite.</h1>
   <p class="hero-sub">Chicken, mutton or veg — pick your kilos and we do the rest. Every order is dum-cooked fresh, packed hot, and priced straight per kilo, no guesswork.</p>
   <a href="#menu" class="hero-cta">See the menu →</a>
 </section>
-
+ 
 <section class="menu" id="menu">
   <div class="section-head">
     <h2>The Menu</h2>
     <span class="label">Priced per kilogram</span>
   </div>
-
+ 
   <div class="cards" id="cards"></div>
 </section>
-
+ 
+<section class="reviews" id="reviews">
+  <div class="section-head">
+    <h2>Word on the Street</h2>
+    <span class="label">4.8 ★ average</span>
+  </div>
+  <div class="review-cards">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"Ordered 3kg mutton biriyani for a birthday get-together — every grain of rice had flavour, and the mutton was fall-apart tender. Reached exactly on time."</p>
+      <div class="reviewer">— Priya R., Chennai</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>"The veg biriyani doesn't feel like an afterthought — properly spiced, generous with paneer and cashews. Ordering again for our office lunch."</p>
+      <div class="reviewer">— Arun K., Chennai</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p>"Chicken biriyani for a family function, 5kg order — packed well, still hot on arrival. WhatsApp ordering made it so easy to get the quantities right."</p>
+      <div class="reviewer">— Meena S., Chennai</div>
+    </div>
+  </div>
+</section>
+ 
 <section class="order-section" id="order">
   <div class="cart-box">
     <h3>Your Order</h3>
@@ -397,7 +482,7 @@
       <span class="amt">₹<span id="totalAmt">0</span></span>
     </div>
   </div>
-
+ 
   <div class="form-box">
     <h3>Send Your Order</h3>
     <label for="custName">Name</label>
@@ -410,22 +495,22 @@
     <div class="form-note">Tapping "Send" opens WhatsApp with your order pre-filled — nothing is charged here. KN Catering confirms availability and final total on chat.</div>
   </div>
 </section>
-
+ 
 <footer>
-  <span>KN Catering Service</span>
+  <span>KN Catering Service · <a href="tel:+918668109314">86681 09314</a></span>
   <span>Orders taken same-day for next-day dum · Min. order 0.5kg per item</span>
 </footer>
-
+ 
 <script>
   const PRODUCTS = [
     { id:'chicken', name:'Chicken Biriyani', desc:'Slow-cooked basmati with marinated chicken, whole spices and fried onions.', price:1300, accent:'#A62639' },
     { id:'mutton',  name:'Mutton Biriyani',  desc:'Tender mutton dum-cooked with saffron rice — our richest, most requested pot.', price:2000, accent:'#7E1B2B' },
     { id:'veg',     name:'Veg Biriyani',     desc:'Seasonal vegetables and paneer layered with fragrant basmati and fried cashew.', price:900,  accent:'#3F6B3A' },
   ];
-
+ 
   const cardsEl = document.getElementById('cards');
   const cart = {}; // id -> qty
-
+ 
   PRODUCTS.forEach((p, i) => {
     const card = document.createElement('div');
     card.className = 'card';
@@ -446,7 +531,7 @@
     `;
     const qtyInput = card.querySelector('[data-qty]');
     const subtotalEl = card.querySelector('[data-subtotal]');
-
+ 
     function updateSubtotal(){
       let q = parseFloat(qtyInput.value);
       if (isNaN(q) || q < 0.5) q = 0.5;
@@ -462,21 +547,21 @@
       updateSubtotal();
     };
     qtyInput.oninput = updateSubtotal;
-
+ 
     card.querySelector('.add-btn').onclick = () => {
       const q = parseFloat(qtyInput.value);
       cart[p.id] = (cart[p.id] || 0) + q;
       renderCart();
     };
-
+ 
     cardsEl.appendChild(card);
   });
-
+ 
   const cartContent = document.getElementById('cartContent');
   const cartTotalBox = document.getElementById('cartTotal');
   const totalAmtEl = document.getElementById('totalAmt');
   const sendBtn = document.getElementById('sendBtn');
-
+ 
   function renderCart(){
     const entries = Object.entries(cart).filter(([,q]) => q > 0);
     if (entries.length === 0){
@@ -503,7 +588,7 @@
     totalAmtEl.textContent = Math.round(total);
     cartTotalBox.style.display = 'flex';
   }
-
+ 
   sendBtn.onclick = () => {
     const entries = Object.entries(cart).filter(([,q]) => q > 0);
     if (entries.length === 0){
@@ -513,7 +598,7 @@
     const name = document.getElementById('custName').value.trim();
     const phone = document.getElementById('custPhone').value.trim();
     const addr = document.getElementById('custAddr').value.trim();
-
+ 
     let total = 0;
     let lines = entries.map(([id, qty]) => {
       const p = PRODUCTS.find(x => x.id === id);
@@ -521,23 +606,24 @@
       total += sub;
       return `${p.name} — ${qty}kg × ₹${p.price} = ₹${Math.round(sub)}`;
     }).join('\n');
-
+ 
     const msg =
 `Hi KN Catering, I'd like to order:
-
+ 
 ${lines}
-
+ 
 Total: ₹${Math.round(total)}
-
+ 
 Name: ${name || '-'}
 Phone: ${phone || '-'}
 Address/date: ${addr || '-'}`;
-
+ 
     const WHATSAPP_NUMBER = '918668109314';
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   };
 </script>
-
+ 
 </body>
 </html>
+ 
