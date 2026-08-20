@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KN Catering Service — Biriyani Orders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --leaf-dark:#1F3A26;
+    --leaf-deeper:#16281B;
+    --ivory:#FBF3E3;
+    --turmeric:#D9A417;
+    --chili:#A62639;
+    --chili-deep:#7E1B2B;
+    --ink:#1B1B1B;
+    --line: rgba(251,243,227,0.16);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--leaf-dark);
+    color:var(--ivory);
+    font-family:'Literata', serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-weight:900;
+    margin:0;
+  }
+  .label{
+    font-family:'Space Grotesk', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    font-weight:600;
+  }
+  a{color:inherit;}
+
+  /* ---------- Header ---------- */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 6vw;
+    border-bottom:1px solid var(--line);
+  }
+  .stamp{
+    width:64px;height:64px;border-radius:50%;
+    border:2px solid var(--turmeric);
+    display:flex;align-items:center;justify-content:center;
+    flex-direction:column;
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:900;
+    color:var(--turmeric);
+    line-height:0.9;
+    position:relative;
+    flex-shrink:0;
+  }
+  .stamp::before,.stamp::after{
+    content:"";
+    position:absolute;
+    inset:5px;
+    border:1px dashed rgba(217,164,23,0.5);
+    border-radius:50%;
+  }
+  .stamp span{font-size:1.4rem;}
+  .stamp small{font-size:0.4rem;letter-spacing:0.18em;margin-top:2px;}
+  .brand-block{display:flex;align-items:center;gap:16px;}
+  .brand-name{font-size:1.5rem;}
+  .brand-tag{font-family:'Space Grotesk',sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--turmeric);}
+  nav a{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    text-decoration:none;
+    margin-left:28px;
+    border-bottom:1px solid transparent;
+    padding-bottom:4px;
+    transition:border-color 0.2s;
+  }
+  nav a:hover{border-color:var(--turmeric);}
+  @media (max-width:640px){ nav{display:none;} }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:9vw 6vw 7vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:26px;
+    background:
+      linear-gradient(135deg, var(--leaf-deeper) 25%, transparent 25%) 0 0/26px 26px,
+      linear-gradient(-135deg, var(--leaf-deeper) 25%, transparent 25%) 0 0/26px 26px;
+    background-color:var(--leaf-dark);
+  }
+  .eyebrow{color:var(--turmeric);margin-bottom:18px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.4rem);
+    line-height:0.92;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--turmeric);
+  }
+  .hero-sub{
+    font-family:'Literata',serif;
+    font-style:italic;
+    max-width:46ch;
+    margin-top:26px;
+    font-size:1.08rem;
+    color:rgba(251,243,227,0.82);
+  }
+  .hero-cta{
+    display:inline-block;
+    margin-top:34px;
+    background:var(--chili);
+    color:var(--ivory);
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    font-size:0.82rem;
+    font-weight:600;
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:var(--radius);
+    border:1px solid var(--chili);
+    transition:background 0.2s, color 0.2s;
+  }
+  .hero-cta:hover{background:transparent;color:var(--turmeric);border-color:var(--turmeric);}
+
+  /* ---------- Menu ---------- */
+  .menu{ padding:5vw 6vw 3vw; }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    border-bottom:1px solid var(--line);
+    padding-bottom:16px; margin-bottom:36px;
+    flex-wrap:wrap; gap:10px;
+  }
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);}
+  .section-head .label{color:var(--turmeric);}
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+  }
+  .card{
+    background:var(--ivory);
+    color:var(--ink);
+    border-radius:var(--radius);
+    padding:26px 24px 24px;
+    display:flex;
+    flex-direction:column;
+    position:relative;
+    border-top:5px solid var(--card-accent, var(--turmeric));
+  }
+  .card .num{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--card-accent, var(--chili));
+    font-weight:600;
+  }
+  .card h3{
+    font-size:1.9rem;
+    margin-top:8px;
+    color:var(--ink);
+  }
+  .card .desc{
+    font-size:0.92rem;
+    color:#4a4a44;
+    margin-top:10px;
+    line-height:1.5;
+    min-height:48px;
+  }
+  .price-row{
+    display:flex; align-items:baseline; gap:8px;
+    margin-top:18px;
+  }
+  .price-row .amt{font-family:'Big Shoulders Display',sans-serif;font-weight:900;font-size:1.8rem;}
+  .price-row .per{font-family:'Space Grotesk',sans-serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#6b6b60;}
+
+  .qty-row{
+    display:flex; align-items:center; gap:10px;
+    margin-top:20px;
+    border:1px solid #d8d2bf;
+    border-radius:var(--radius);
+    padding:8px 10px;
+    background:#fff;
+  }
+  .qty-row button{
+    width:30px;height:30px;
+    border-radius:50%;
+    border:1px solid var(--card-accent,var(--turmeric));
+    background:transparent;
+    color:var(--ink);
+    font-size:1.1rem;
+    cursor:pointer;
+    line-height:1;
+    flex-shrink:0;
+  }
+  .qty-row button:hover{background:var(--card-accent,var(--turmeric));color:#fff;}
+  .qty-row input{
+    width:100%;
+    text-align:center;
+    border:none;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem;
+    font-weight:600;
+    background:transparent;
+  }
+  .qty-row input:focus{outline:none;}
+  .qty-unit{font-family:'Space Grotesk',sans-serif;font-size:0.72rem;color:#8a8a7c;flex-shrink:0;}
+
+  .card .subtotal{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.85rem;
+    margin-top:14px;
+    color:#4a4a44;
+  }
+  .card .subtotal b{color:var(--ink);font-size:1rem;}
+
+  .add-btn{
+    margin-top:18px;
+    background:var(--ink);
+    color:var(--ivory);
+    border:none;
+    padding:13px 18px;
+    border-radius:var(--radius);
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:0.78rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:background 0.2s;
+  }
+  .add-btn:hover{background:var(--card-accent,var(--chili));}
+
+  /* ---------- Order / cart ---------- */
+  .order-section{
+    padding:5vw 6vw 8vw;
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:40px;
+  }
+  @media (max-width:860px){ .order-section{grid-template-columns:1fr;} }
+
+  .cart-box, .form-box{
+    background:var(--leaf-deeper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:28px;
+  }
+  .cart-box h3, .form-box h3{
+    font-size:1.5rem;
+    margin-bottom:18px;
+    color:var(--turmeric);
+  }
+  .cart-empty{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.85rem;
+    color:rgba(251,243,227,0.55);
+    padding:20px 0;
+  }
+  .cart-line{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.9rem;
+    gap:10px;
+  }
+  .cart-line .meta{color:rgba(251,243,227,0.6);font-size:0.78rem;margin-top:3px;}
+  .cart-line button{
+    background:none;border:none;color:var(--chili);
+    font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;
+    cursor:pointer;font-family:'Space Grotesk',sans-serif;
+    flex-shrink:0;
+  }
+  .cart-total{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:18px; padding-top:18px;
+    border-top:1px solid var(--line);
+    font-family:'Big Shoulders Display',sans-serif;
+  }
+  .cart-total .amt{font-size:2rem;color:var(--turmeric);font-weight:900;}
+
+  .form-box label{
+    display:block;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:rgba(251,243,227,0.7);
+    margin-bottom:6px;
+    margin-top:16px;
+  }
+  .form-box label:first-of-type{margin-top:0;}
+  .form-box input, .form-box textarea{
+    width:100%;
+    background:var(--leaf-dark);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:11px 12px;
+    color:var(--ivory);
+    font-family:'Literata',serif;
+    font-size:0.95rem;
+  }
+  .form-box input:focus, .form-box textarea:focus{outline:1px solid var(--turmeric);}
+  .form-box textarea{resize:vertical;min-height:70px;}
+  .whatsapp-btn{
+    width:100%;
+    margin-top:22px;
+    background:var(--turmeric);
+    color:var(--leaf-deeper);
+    border:none;
+    padding:15px;
+    border-radius:var(--radius);
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:700;
+    font-size:0.85rem;
+    cursor:pointer;
+  }
+  .whatsapp-btn:hover{background:#e8b52e;}
+  .whatsapp-btn:disabled{opacity:0.4;cursor:not-allowed;}
+  .form-note{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.7rem;
+    color:rgba(251,243,227,0.45);
+    margin-top:10px;
+    line-height:1.5;
+  }
+
+  footer{
+    padding:26px 6vw 40px;
+    border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.75rem;
+    color:rgba(251,243,227,0.5);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-block">
+    <div class="stamp"><span>KN</span><small>CATERING</small></div>
+    <div>
+      <div class="brand-name display">KN Catering</div>
+      <div class="brand-tag">Biriyani, made to order</div>
+    </div>
+  </div>
+  <nav>
+    <a href="#menu">Menu</a>
+    <a href="#order">Order</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="label eyebrow">Home-cooked · Slow-dum · Serves by the kg</div>
+  <h1>Biriyani, <em>weighed</em> to your table's appetite.</h1>
+  <p class="hero-sub">Chicken, mutton or veg — pick your kilos and we do the rest. Every order is dum-cooked fresh, packed hot, and priced straight per kilo, no guesswork.</p>
+  <a href="#menu" class="hero-cta">See the menu →</a>
+</section>
+
+<section class="menu" id="menu">
+  <div class="section-head">
+    <h2>The Menu</h2>
+    <span class="label">Priced per kilogram</span>
+  </div>
+
+  <div class="cards" id="cards"></div>
+</section>
+
+<section class="order-section" id="order">
+  <div class="cart-box">
+    <h3>Your Order</h3>
+    <div id="cartContent"><div class="cart-empty">Nothing added yet — pick a quantity above and hit "Add to order".</div></div>
+    <div class="cart-total" id="cartTotal" style="display:none;">
+      <span class="label" style="align-self:flex-end;">Total</span>
+      <span class="amt">₹<span id="totalAmt">0</span></span>
+    </div>
+  </div>
+
+  <div class="form-box">
+    <h3>Send Your Order</h3>
+    <label for="custName">Name</label>
+    <input id="custName" type="text" placeholder="Your name">
+    <label for="custPhone">Phone</label>
+    <input id="custPhone" type="tel" placeholder="10-digit mobile number">
+    <label for="custAddr">Delivery address / date</label>
+    <textarea id="custAddr" placeholder="Address, and date & time needed"></textarea>
+    <button class="whatsapp-btn" id="sendBtn">Send order on WhatsApp</button>
+    <div class="form-note">Tapping "Send" opens WhatsApp with your order pre-filled — nothing is charged here. KN Catering confirms availability and final total on chat.</div>
+  </div>
+</section>
+
+<footer>
+  <span>KN Catering Service</span>
+  <span>Orders taken same-day for next-day dum · Min. order 0.5kg per item</span>
+</footer>
+
+<script>
+  const PRODUCTS = [
+    { id:'chicken', name:'Chicken Biriyani', desc:'Slow-cooked basmati with marinated chicken, whole spices and fried onions.', price:1300, accent:'#A62639' },
+    { id:'mutton',  name:'Mutton Biriyani',  desc:'Tender mutton dum-cooked with saffron rice — our richest, most requested pot.', price:2000, accent:'#7E1B2B' },
+    { id:'veg',     name:'Veg Biriyani',     desc:'Seasonal vegetables and paneer layered with fragrant basmati and fried cashew.', price:900,  accent:'#3F6B3A' },
+  ];
+
+  const cardsEl = document.getElementById('cards');
+  const cart = {}; // id -> qty
+
+  PRODUCTS.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.setProperty('--card-accent', p.accent);
+    card.innerHTML = `
+      <span class="num">0${i+1} / Biriyani</span>
+      <h3>${p.name}</h3>
+      <div class="desc">${p.desc}</div>
+      <div class="price-row"><span class="amt">₹${p.price}</span><span class="per">per kg</span></div>
+      <div class="qty-row">
+        <button type="button" data-act="minus">−</button>
+        <input type="number" min="0.5" step="0.5" value="1" data-qty>
+        <span class="qty-unit">KG</span>
+        <button type="button" data-act="plus">+</button>
+      </div>
+      <div class="subtotal">Subtotal: <b data-subtotal>₹${p.price}</b></div>
+      <button class="add-btn">Add to order</button>
+    `;
+    const qtyInput = card.querySelector('[data-qty]');
+    const subtotalEl = card.querySelector('[data-subtotal]');
+
+    function updateSubtotal(){
+      let q = parseFloat(qtyInput.value);
+      if (isNaN(q) || q < 0.5) q = 0.5;
+      qtyInput.value = q;
+      subtotalEl.textContent = '₹' + Math.round(q * p.price);
+    }
+    card.querySelector('[data-act="minus"]').onclick = () => {
+      qtyInput.value = Math.max(0.5, parseFloat(qtyInput.value) - 0.5);
+      updateSubtotal();
+    };
+    card.querySelector('[data-act="plus"]').onclick = () => {
+      qtyInput.value = parseFloat(qtyInput.value) + 0.5;
+      updateSubtotal();
+    };
+    qtyInput.oninput = updateSubtotal;
+
+    card.querySelector('.add-btn').onclick = () => {
+      const q = parseFloat(qtyInput.value);
+      cart[p.id] = (cart[p.id] || 0) + q;
+      renderCart();
+    };
+
+    cardsEl.appendChild(card);
+  });
+
+  const cartContent = document.getElementById('cartContent');
+  const cartTotalBox = document.getElementById('cartTotal');
+  const totalAmtEl = document.getElementById('totalAmt');
+  const sendBtn = document.getElementById('sendBtn');
+
+  function renderCart(){
+    const entries = Object.entries(cart).filter(([,q]) => q > 0);
+    if (entries.length === 0){
+      cartContent.innerHTML = '<div class="cart-empty">Nothing added yet — pick a quantity above and hit "Add to order".</div>';
+      cartTotalBox.style.display = 'none';
+      return;
+    }
+    let total = 0;
+    cartContent.innerHTML = entries.map(([id, qty]) => {
+      const p = PRODUCTS.find(x => x.id === id);
+      const sub = qty * p.price;
+      total += sub;
+      return `<div class="cart-line">
+        <div>${p.name}<div class="meta">${qty} kg × ₹${p.price}</div></div>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span>₹${Math.round(sub)}</span>
+          <button data-remove="${id}">Remove</button>
+        </div>
+      </div>`;
+    }).join('');
+    cartContent.querySelectorAll('[data-remove]').forEach(btn => {
+      btn.onclick = () => { delete cart[btn.dataset.remove]; renderCart(); };
+    });
+    totalAmtEl.textContent = Math.round(total);
+    cartTotalBox.style.display = 'flex';
+  }
+
+  sendBtn.onclick = () => {
+    const entries = Object.entries(cart).filter(([,q]) => q > 0);
+    if (entries.length === 0){
+      alert('Add at least one item to your order first.');
+      return;
+    }
+    const name = document.getElementById('custName').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const addr = document.getElementById('custAddr').value.trim();
+
+    let total = 0;
+    let lines = entries.map(([id, qty]) => {
+      const p = PRODUCTS.find(x => x.id === id);
+      const sub = qty * p.price;
+      total += sub;
+      return `${p.name} — ${qty}kg × ₹${p.price} = ₹${Math.round(sub)}`;
+    }).join('\n');
+
+    const msg =
+`Hi KN Catering, I'd like to order:
+
+${lines}
+
+Total: ₹${Math.round(total)}
+
+Name: ${name || '-'}
+Phone: ${phone || '-'}
+Address/date: ${addr || '-'}`;
+
+    const WHATSAPP_NUMBER = '918668109314';
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    window.open(url, '_blank');
+  };
+</script>
+
+</body>
+</html>
