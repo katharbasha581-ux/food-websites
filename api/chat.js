@@ -32,7 +32,7 @@ Keep answers short (2-5 sentences), warm, and practical. Only redirect to WhatsA
 When a customer asks how much to order for a number of guests, always show the kg calculation (N / 5) AND the estimated total price using the menu rate for the biriyani type they mentioned (or ask which type if not mentioned).`;
  
 // Use the free, fast Gemini flash-lite model to keep this cheap/token-efficient.
-const GEMINI_MODEL = 'gemini-2.0-flash-lite';
+const GEMINI_MODEL = 'gemini-2.5-flash-lite';
  
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -94,4 +94,3 @@ module.exports = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
- 
