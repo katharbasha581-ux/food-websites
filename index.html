@@ -412,7 +412,7 @@
     font-size:0.75rem;
     color:rgba(251,243,227,0.5);
   }
- 
+
   /* ---------- Chatbot widget ---------- */
   #chatToggle{
     position:fixed;
@@ -433,10 +433,10 @@
   #chatWindow{
     position:fixed;
     right:22px; bottom:94px;
-    width:340px;
+    width:420px;
     max-width:calc(100vw - 32px);
-    height:460px;
-    max-height:calc(100vh - 140px);
+    height:600px;
+    max-height:calc(100vh - 130px);
     background:var(--leaf-deeper);
     border:1px solid var(--line);
     border-radius:10px;
@@ -567,6 +567,190 @@
     white-space:nowrap;
   }
   .chip:hover{background:var(--turmeric);color:var(--leaf-deeper);}
+
+  /* Typing indicator with animated dots */
+  .typing-dots{
+    display:inline-flex; gap:4px; align-items:center;
+  }
+  .typing-dots span{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--turmeric);
+    animation:bounceDot 1.2s infinite ease-in-out;
+  }
+  .typing-dots span:nth-child(2){animation-delay:0.15s;}
+  .typing-dots span:nth-child(3){animation-delay:0.3s;}
+  @keyframes bounceDot{
+    0%,60%,100%{transform:translateY(0);opacity:0.4;}
+    30%{transform:translateY(-5px);opacity:1;}
+  }
+
+  /* Conversation starters panel */
+  #chatStarters{
+    padding:4px 16px 12px;
+  }
+  #chatStarters .starters-label{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.66rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:rgba(251,243,227,0.45);
+    margin-bottom:9px;
+  }
+  .starter-btn{
+    display:block;
+    width:100%;
+    text-align:left;
+    background:var(--leaf-dark);
+    border:1px solid var(--line);
+    border-left:3px solid var(--turmeric);
+    color:var(--ivory);
+    font-family:'Literata',serif;
+    font-size:0.84rem;
+    padding:10px 12px;
+    border-radius:6px;
+    margin-bottom:7px;
+    cursor:pointer;
+    line-height:1.4;
+    transition:border-color 0.15s, background 0.15s;
+  }
+  .starter-btn:hover{background:#1c3322;border-left-color:var(--chili);}
+
+  /* Member badge inside chat header */
+  #memberBadge{
+    display:none;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.6rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    background:var(--turmeric);
+    color:var(--leaf-deeper);
+    padding:3px 8px;
+    border-radius:10px;
+    font-weight:700;
+    margin-top:4px;
+    width:fit-content;
+  }
+
+  /* ---------- Membership section ---------- */
+  .member-section{ padding:3vw 6vw 5vw; }
+  .member-box{
+    background:linear-gradient(135deg, var(--leaf-deeper) 0%, #1a2f20 100%);
+    border:1px solid var(--line);
+    border-top:4px solid var(--turmeric);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:36px;
+    align-items:center;
+  }
+  @media (max-width:760px){ .member-box{grid-template-columns:1fr;gap:26px;} }
+  .member-box h3{font-size:1.8rem;color:var(--turmeric);margin-bottom:12px;}
+  .member-perks{
+    list-style:none;padding:0;margin:14px 0 0;
+    font-size:0.9rem;line-height:1.75;color:rgba(251,243,227,0.85);
+  }
+  .member-perks li::before{content:"✦ ";color:var(--turmeric);}
+  .member-form input{
+    width:100%;
+    background:var(--leaf-dark);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:11px 12px;
+    color:var(--ivory);
+    font-family:'Literata',serif;
+    font-size:0.95rem;
+    margin-bottom:10px;
+  }
+  .member-form input:focus{outline:1px solid var(--turmeric);}
+  .member-form button{
+    width:100%;
+    background:var(--turmeric);
+    color:var(--leaf-deeper);
+    border:none;padding:14px;
+    border-radius:var(--radius);
+    font-family:'Space Grotesk',sans-serif;
+    text-transform:uppercase;letter-spacing:0.08em;
+    font-weight:700;font-size:0.82rem;cursor:pointer;
+  }
+  .member-form button:hover{background:#e8b52e;}
+  .member-card{
+    background:var(--leaf-dark);
+    border:1px dashed var(--turmeric);
+    border-radius:var(--radius);
+    padding:22px;
+    text-align:center;
+  }
+  .member-card .tier{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-size:1.9rem;font-weight:900;
+    color:var(--turmeric);
+    text-transform:uppercase;
+  }
+  .member-card .mname{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1rem;font-weight:600;margin-top:4px;
+  }
+  .member-card .mid{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.7rem;letter-spacing:0.1em;
+    color:rgba(251,243,227,0.5);margin-top:8px;
+  }
+  .member-card .mcount{
+    font-family:'Literata',serif;
+    font-size:0.88rem;margin-top:14px;
+    color:rgba(251,243,227,0.8);
+    line-height:1.5;
+  }
+  .tier-track{
+    display:flex;gap:4px;margin-top:16px;
+  }
+  .tier-track div{
+    flex:1;height:5px;border-radius:3px;
+    background:rgba(251,243,227,0.15);
+  }
+  .tier-track div.filled{background:var(--turmeric);}
+  .member-logout{
+    background:none;border:none;
+    color:rgba(251,243,227,0.45);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;
+    cursor:pointer;margin-top:14px;text-decoration:underline;
+  }
+
+  /* Serving calculator in menu head */
+  .serving-calc{
+    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    background:var(--leaf-deeper);
+    border:1px solid var(--line);
+    border-left:3px solid var(--turmeric);
+    border-radius:var(--radius);
+    padding:14px 18px;
+    margin-bottom:28px;
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.85rem;
+  }
+  .serving-calc input{
+    width:80px;
+    background:var(--leaf-dark);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:8px 10px;
+    color:var(--ivory);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.9rem;
+    text-align:center;
+  }
+  .serving-calc input:focus{outline:1px solid var(--turmeric);}
+  .serving-calc button{
+    background:var(--chili);color:var(--ivory);
+    border:none;padding:9px 16px;border-radius:var(--radius);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em;
+    font-weight:600;cursor:pointer;
+  }
+  .serving-calc button:hover{background:var(--chili-deep);}
+  .serving-calc .result{color:var(--turmeric);font-weight:700;}
 </style>
 </head>
 <body>
@@ -582,6 +766,7 @@
   <nav>
     <a href="#menu">Menu</a>
     <a href="#reviews">Reviews</a>
+    <a href="#regulars">Regulars</a>
     <a href="#order">Order</a>
     <a href="tel:+918668109314">📞 86681 09314</a>
   </nav>
@@ -601,6 +786,14 @@
     <span class="label">Priced per kilogram</span>
   </div>
  
+  <div class="serving-calc">
+    <span>🍽️ Not sure how much to order?</span>
+    <input type="number" id="guestCount" min="1" placeholder="Guests" value="">
+    <span>guests →</span>
+    <button id="calcBtn">Calculate</button>
+    <span class="result" id="calcResult"></span>
+  </div>
+
   <div class="cards" id="cards"></div>
 </section>
  
@@ -628,6 +821,46 @@
   </div>
 </section>
  
+<section class="member-section" id="regulars">
+  <div class="section-head">
+    <h2>KN Regulars</h2>
+    <span class="label">Free · No subscription</span>
+  </div>
+  <div class="member-box">
+    <div>
+      <h3 id="memberHeading">Become a KN Regular</h3>
+      <p style="font-size:0.98rem;line-height:1.6;color:rgba(251,243,227,0.85);margin:0;">
+        Namma regular customers ku konjam extra care. Onnum kattanam illa — just your name and number, that's it.
+      </p>
+      <ul class="member-perks">
+        <li>Your name &amp; number auto-fill every order — no retyping</li>
+        <li>Order count tracked — 3 orders la <b>Regular</b>, 6 la <b>Gold Regular</b></li>
+        <li>Priority slot on busy weekends &amp; festival days</li>
+        <li>First to know about new dishes and seasonal specials</li>
+        <li>The chat assistant greets you by name and remembers your usual</li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="member-form" id="memberForm">
+        <input type="text" id="memberName" placeholder="Your name">
+        <input type="tel" id="memberPhone" placeholder="10-digit mobile number">
+        <button id="joinBtn">Join free →</button>
+        <div class="form-note" style="text-align:center;">Stored only on your device. Nothing is shared or charged.</div>
+      </div>
+
+      <div class="member-card" id="memberCard" style="display:none;">
+        <div class="tier" id="mTier">New Regular</div>
+        <div class="mname" id="mName">—</div>
+        <div class="mid" id="mId">—</div>
+        <div class="tier-track" id="mTrack"></div>
+        <div class="mcount" id="mCount">—</div>
+        <button class="member-logout" id="memberLogout">Not you? Clear</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="order-section" id="order">
   <div class="cart-box">
     <h3>Your Order</h3>
@@ -655,22 +888,31 @@
   <span>KN Catering Service · <a href="tel:+918668109314">86681 09314</a></span>
   <span>Orders taken same-day for next-day dum · Min. order 0.5kg per item</span>
 </footer>
- 
+
 <!-- ---------- Chatbot widget ---------- -->
 <button id="chatToggle" aria-label="Chat with us">
   💬
   <span id="chatBadge"></span>
 </button>
- 
+
 <div id="chatWindow">
   <div id="chatHeader">
     <div>
       <div class="title">KN Assistant</div>
       <div class="sub">Ask about menu, pricing, orders</div>
+      <div id="memberBadge">★ Regular</div>
     </div>
     <button id="chatClose" aria-label="Close chat">✕</button>
   </div>
   <div id="chatMessages"></div>
+  <div id="chatStarters">
+    <div class="starters-label">Try asking</div>
+    <button type="button" class="starter-btn" data-msg="I'm hosting 150 people — how many kg of biriyani do I need and what will it cost?">👥 How much biriyani for 150 people?</button>
+    <button type="button" class="starter-btn" data-msg="What's the difference between your chicken, mutton and veg biriyani?">🍛 Chicken vs mutton vs veg — what's different?</button>
+    <button type="button" class="starter-btn" data-msg="Can you make it less spicy or with no onion/garlic?">🌶️ Can you customise the spice level?</button>
+    <button type="button" class="starter-btn" data-msg="I need biriyani for an office lunch tomorrow — how do I order and how early should I book?">🏢 Office lunch — how early to book?</button>
+    <button type="button" class="starter-btn" data-msg="What sides or add-ons go well with biriyani?">🥗 What sides go well with biriyani?</button>
+  </div>
   <div id="chatSuggestions">
     <button type="button" class="chip" data-msg="What's on the menu and prices?">📋 Menu</button>
     <button type="button" class="chip" data-msg="How does delivery and timing work?">🚚 Delivery time</button>
@@ -800,10 +1042,126 @@ Phone: ${phone || '-'}
 Address/date: ${addr || '-'}`;
  
     const WHATSAPP_NUMBER = '918668109314';
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    const memberTag = member ? `\n\n(KN Regular · ${member.id} · ${tierFor(member.orders)})` : '';
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg + memberTag)}`;
     window.open(url, '_blank');
+
+    // Track the order for KN Regulars
+    if (member){
+      const prevTier = tierFor(member.orders);
+      member.orders += 1;
+      member.lastOrder = lines;
+      saveMember();
+      renderMember();
+      const newTier = tierFor(member.orders);
+      if (newTier !== prevTier){
+        setTimeout(() => alert(`🎉 Congrats ${member.name.split(' ')[0]}! You're now a ${newTier} at KN Catering.`), 600);
+      }
+    }
   };
- 
+
+  /* ---------- Serving calculator ---------- */
+  const SERVES_PER_KG = 5;
+  document.getElementById('calcBtn').onclick = () => {
+    const g = parseInt(document.getElementById('guestCount').value, 10);
+    const out = document.getElementById('calcResult');
+    if (!g || g < 1){ out.textContent = 'Enter number of guests'; return; }
+    const kg = Math.ceil((g / SERVES_PER_KG) * 2) / 2; // round up to nearest 0.5kg
+    out.textContent = `≈ ${kg} kg total (₹${Math.round(kg*900)}–₹${Math.round(kg*2000)} depending on type)`;
+  };
+
+  /* ---------- KN Regulars membership ---------- */
+  const MEMBER_KEY = 'kn_regular_member';
+  let member = null;
+
+  function loadMember(){
+    try {
+      const raw = localStorage.getItem(MEMBER_KEY);
+      member = raw ? JSON.parse(raw) : null;
+    } catch(e){ member = null; }
+  }
+  function saveMember(){
+    try { localStorage.setItem(MEMBER_KEY, JSON.stringify(member)); } catch(e){}
+  }
+  function tierFor(orders){
+    if (orders >= 6) return 'Gold Regular';
+    if (orders >= 3) return 'Regular';
+    return 'New Regular';
+  }
+  function renderMember(){
+    const form = document.getElementById('memberForm');
+    const cardEl = document.getElementById('memberCard');
+    const heading = document.getElementById('memberHeading');
+    const badge = document.getElementById('memberBadge');
+
+    if (!member){
+      form.style.display = 'block';
+      cardEl.style.display = 'none';
+      heading.textContent = 'Become a KN Regular';
+      badge.style.display = 'none';
+      return;
+    }
+    form.style.display = 'none';
+    cardEl.style.display = 'block';
+    heading.textContent = `Welcome back, ${member.name.split(' ')[0]}!`;
+
+    const tier = tierFor(member.orders);
+    document.getElementById('mTier').textContent = tier;
+    document.getElementById('mName').textContent = member.name;
+    document.getElementById('mId').textContent = 'ID · ' + member.id;
+
+    const next = member.orders >= 6 ? null : (member.orders >= 3 ? 6 : 3);
+    document.getElementById('mCount').innerHTML = next
+      ? `<b>${member.orders}</b> order${member.orders===1?'':'s'} placed — ${next - member.orders} more to reach <b>${tierFor(next)}</b>.`
+      : `<b>${member.orders}</b> orders placed — you're at our top tier. Nandri! 🙏`;
+
+    const track = document.getElementById('mTrack');
+    track.innerHTML = '';
+    for (let i=0;i<6;i++){
+      const d = document.createElement('div');
+      if (i < Math.min(member.orders,6)) d.className = 'filled';
+      track.appendChild(d);
+    }
+
+    badge.textContent = '★ ' + tier;
+    badge.style.display = 'block';
+
+    // Auto-fill the order form
+    const n = document.getElementById('custName');
+    const p = document.getElementById('custPhone');
+    if (n && !n.value) n.value = member.name;
+    if (p && !p.value) p.value = member.phone;
+  }
+
+  document.getElementById('joinBtn').onclick = () => {
+    const name = document.getElementById('memberName').value.trim();
+    const phone = document.getElementById('memberPhone').value.trim();
+    if (name.length < 2){ alert('Please enter your name.'); return; }
+    if (!/^\d{10}$/.test(phone.replace(/\D/g,'').slice(-10))){ alert('Please enter a valid 10-digit mobile number.'); return; }
+    member = {
+      name,
+      phone: phone.replace(/\D/g,'').slice(-10),
+      id: 'KN-' + phone.replace(/\D/g,'').slice(-4) + '-' + Math.random().toString(36).slice(2,5).toUpperCase(),
+      orders: 0,
+      lastOrder: null,
+      joined: new Date().toISOString().slice(0,10)
+    };
+    saveMember();
+    renderMember();
+  };
+
+  document.getElementById('memberLogout').onclick = () => {
+    if (!confirm('Clear your KN Regulars details from this device?')) return;
+    member = null;
+    try { localStorage.removeItem(MEMBER_KEY); } catch(e){}
+    document.getElementById('memberName').value = '';
+    document.getElementById('memberPhone').value = '';
+    renderMember();
+  };
+
+  loadMember();
+  renderMember();
+
   /* ---------- Chatbot logic ---------- */
   const chatToggle = document.getElementById('chatToggle');
   const chatWindow = document.getElementById('chatWindow');
@@ -812,10 +1170,10 @@ Address/date: ${addr || '-'}`;
   const chatInput = document.getElementById('chatInput');
   const chatSend = document.getElementById('chatSend');
   const chatBadge = document.getElementById('chatBadge');
- 
+
   let chatHistory = []; // {role:'user'|'model', text}
   let hasOpenedOnce = false;
- 
+
   function addMessage(text, cls){
     const div = document.createElement('div');
     div.className = 'chat-msg ' + cls;
@@ -824,13 +1182,31 @@ Address/date: ${addr || '-'}`;
     chatMessages.scrollTop = chatMessages.scrollHeight;
     return div;
   }
- 
+
+  function addTyping(){
+    const div = document.createElement('div');
+    div.className = 'chat-msg typing';
+    div.innerHTML = '<span class="typing-dots"><span></span><span></span><span></span></span>';
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return div;
+  }
+
   function greetIfEmpty(){
     if (chatMessages.children.length === 0){
-      addMessage("Hi! I'm the KN Catering assistant. Ask me about the menu, pricing per kg, delivery, or how to place an order.", 'bot');
+      const who = member ? `${member.name.split(' ')[0]}` : null;
+      const greeting = who
+        ? `Vanakkam ${who}! 👋 Good to see you back. Ask me anything about the menu, quantities for your event, or custom requests.`
+        : "Vanakkam! 👋 I'm the KN Catering assistant. Ask me about the menu, how many kg you'll need for your guests, custom requests, or how to order.";
+      addMessage(greeting, 'bot');
     }
   }
- 
+
+  function hideStarters(){
+    const s = document.getElementById('chatStarters');
+    if (s) s.style.display = 'none';
+  }
+
   chatToggle.onclick = () => {
     chatWindow.classList.toggle('open');
     if (chatWindow.classList.contains('open')){
@@ -841,27 +1217,36 @@ Address/date: ${addr || '-'}`;
     }
   };
   chatClose.onclick = () => chatWindow.classList.remove('open');
- 
+
   const chatSuggestions = document.getElementById('chatSuggestions');
   chatSuggestions.querySelectorAll('.chip').forEach((chip) => {
     chip.onclick = () => sendMessage(chip.dataset.msg);
   });
- 
+  document.querySelectorAll('#chatStarters .starter-btn').forEach((btn) => {
+    btn.onclick = () => sendMessage(btn.dataset.msg);
+  });
+
   async function sendMessage(overrideText){
     const text = (typeof overrideText === 'string' ? overrideText : chatInput.value).trim();
     if (!text) return;
+    hideStarters();
     addMessage(text, 'user');
     chatHistory.push({ role:'user', text });
     if (typeof overrideText !== 'string') chatInput.value = '';
+    chatInput.style.height = 'auto';
     chatSend.disabled = true;
- 
-    const typingEl = addMessage('Typing…', 'typing');
- 
+
+    const typingEl = addTyping();
+
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: chatHistory.slice(0, -1) })
+        body: JSON.stringify({
+          message: text,
+          history: chatHistory.slice(0, -1),
+          member: member ? { name: member.name, tier: tierFor(member.orders), orders: member.orders } : null
+        })
       });
       const data = await res.json();
       typingEl.remove();
@@ -876,7 +1261,7 @@ Address/date: ${addr || '-'}`;
       chatInput.focus();
     }
   }
- 
+
   chatSend.onclick = sendMessage;
   chatInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && !e.shiftKey){
@@ -884,7 +1269,7 @@ Address/date: ${addr || '-'}`;
       sendMessage();
     }
   });
- 
+
   // Auto-resize textarea
   chatInput.addEventListener('input', () => {
     chatInput.style.height = 'auto';
@@ -894,4 +1279,3 @@ Address/date: ${addr || '-'}`;
  
 </body>
 </html>
- 
