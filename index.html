@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KN Catering Service — Biriyani Orders</title>
+<meta name="description" content="Home-cooked, slow-dum biriyani in Chennai — chicken, mutton & veg, priced per kg. Plus starters, live counters, and event catering. WhatsApp order in seconds.">
+<meta property="og:title" content="KN Catering Service — Biriyani, weighed to your table's appetite">
+<meta property="og:description" content="Home-cooked slow-dum biriyani, starters & live counters for events in Chennai. Order on WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍛</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Literata:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -751,6 +756,112 @@
   }
   .serving-calc button:hover{background:var(--chili-deep);}
   .serving-calc .result{color:var(--turmeric);font-weight:700;}
+
+  /* Scroll reveal */
+  .reveal{
+    opacity:0; transform:translateY(22px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  /* Today's special ribbon */
+  .special-ribbon{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--chili);
+    color:var(--ivory);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.74rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:700;
+    padding:8px 16px;
+    border-radius:20px;
+    margin-bottom:22px;
+    border:1px solid var(--turmeric);
+  }
+  .special-ribbon .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--turmeric);
+    animation:pulseDot 1.6s infinite;
+  }
+  @keyframes pulseDot{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:0.4;transform:scale(0.7);}
+  }
+
+  /* FAQ accordion */
+  .faq-section{ padding:3vw 6vw 6vw; }
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-q{
+    width:100%;
+    background:none;border:none;
+    color:var(--ivory);
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    text-align:left;
+    padding:20px 4px;
+    cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:14px;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  .faq-q .icon{
+    color:var(--turmeric);
+    font-size:1.4rem;
+    flex-shrink:0;
+    transition:transform 0.25s;
+    font-family:'Space Grotesk',sans-serif;
+  }
+  .faq-item.open .faq-q .icon{ transform:rotate(45deg); }
+  .faq-a{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.3s ease, padding 0.3s ease;
+    font-size:0.95rem;
+    line-height:1.65;
+    color:rgba(251,243,227,0.78);
+    padding:0 4px;
+  }
+  .faq-item.open .faq-a{
+    max-height:220px;
+    padding:0 4px 20px;
+  }
+
+  /* Sticky mobile order bar */
+  #mobileOrderBar{
+    display:none;
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--leaf-deeper);
+    border-top:1px solid var(--line);
+    padding:12px 16px;
+    z-index:9998;
+    gap:10px;
+  }
+  @media (max-width:640px){
+    #mobileOrderBar{ display:flex; }
+    body{ padding-bottom:64px; }
+    #chatToggle{ bottom:82px; }
+    #chatWindow{ bottom:154px; }
+  }
+  #mobileOrderBar a{
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-radius:var(--radius);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.8rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    text-decoration:none;
+  }
+  #mobileOrderBar a.call{ background:var(--leaf-dark); color:var(--turmeric); border:1px solid var(--turmeric); }
+  #mobileOrderBar a.wa{ background:#25D366; color:#0b1a0d; }
 </style>
 </head>
 <body>
@@ -765,6 +876,7 @@
   </div>
   <nav>
     <a href="#menu">Menu</a>
+    <a href="#starters">Starters</a>
     <a href="#reviews">Reviews</a>
     <a href="#regulars">Regulars</a>
     <a href="#order">Order</a>
@@ -774,6 +886,7 @@
 <div class="phone-strip">Call / WhatsApp to order — <a href="tel:+918668109314">86681 09314</a></div>
  
 <section class="hero">
+  <div class="special-ribbon"><span class="dot"></span> This week: Free Beeda counter on orders above 10kg</div>
   <div class="label eyebrow">Home-cooked · Slow-dum · Serves by the kg</div>
   <h1>Biriyani, <em>weighed</em> to your table's appetite.</h1>
   <p class="hero-sub">Chicken, mutton or veg — pick your kilos and we do the rest. Every order is dum-cooked fresh, packed hot, and priced straight per kilo, no guesswork.</p>
@@ -795,6 +908,14 @@
   </div>
 
   <div class="cards" id="cards"></div>
+</section>
+
+<section class="menu" id="starters">
+  <div class="section-head">
+    <h2>Starters &amp; Live Counters</h2>
+    <span class="label">Perfect add-ons for events</span>
+  </div>
+  <div class="cards" id="startersCards"></div>
 </section>
  
 <section class="reviews" id="reviews">
@@ -820,7 +941,36 @@
     </div>
   </div>
 </section>
- 
+
+<section class="faq-section" id="faq">
+  <div class="section-head">
+    <h2>Quick Questions</h2>
+    <span class="label">Before you order</span>
+  </div>
+  <div id="faqList">
+    <div class="faq-item">
+      <button class="faq-q"><span>How far in advance should I order?</span><span class="icon">+</span></button>
+      <div class="faq-a">Same-day orders are prepared for next-day dum. For events over 20kg or festival dates, book at least 2-3 days ahead to be safe.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Can I customise spice level or ingredients?</span><span class="icon">+</span></button>
+      <div class="faq-a">Yes — less spicy, no onion/garlic, extra gravy, egg add-ons and similar requests are usually possible. Mention it in your WhatsApp order or ask our chat assistant.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Do you deliver, or is it pickup only?</span><span class="icon">+</span></button>
+      <div class="faq-a">We deliver across Chennai for bulk/event orders. Share your address and date when you send the order on WhatsApp, and we'll confirm delivery and timing.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>What's the minimum order size?</span><span class="icon">+</span></button>
+      <div class="faq-a">0.5kg per biriyani item. There's no minimum for starters and counters, though live counters (like the popcorn & cotton candy combo) are priced per event, not per head.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Is KN Regulars really free?</span><span class="icon">+</span></button>
+      <div class="faq-a">Yes — no subscription, no fees, ever. Just your name and number to track your orders and unlock priority slots as a returning customer.</div>
+    </div>
+  </div>
+</section>
+
 <section class="member-section" id="regulars">
   <div class="section-head">
     <h2>KN Regulars</h2>
@@ -884,6 +1034,11 @@
   </div>
 </section>
  
+<div id="mobileOrderBar">
+  <a href="tel:+918668109314" class="call">📞 Call</a>
+  <a href="https://wa.me/918668109314" class="wa" target="_blank">💬 WhatsApp</a>
+</div>
+
 <footer>
   <span>KN Catering Service · <a href="tel:+918668109314">86681 09314</a></span>
   <span>Orders taken same-day for next-day dum · Min. order 0.5kg per item</span>
@@ -926,59 +1081,78 @@
  
 <script>
   const PRODUCTS = [
-    { id:'chicken', name:'Chicken Biriyani', desc:'Slow-cooked basmati with marinated chicken, whole spices and fried onions.', price:1300, accent:'#A62639' },
-    { id:'mutton',  name:'Mutton Biriyani',  desc:'Tender mutton dum-cooked with saffron rice — our richest, most requested pot.', price:2000, accent:'#7E1B2B' },
-    { id:'veg',     name:'Veg Biriyani',     desc:'Seasonal vegetables and paneer layered with fragrant basmati and fried cashew.', price:900,  accent:'#3F6B3A' },
+    { id:'chicken', name:'Chicken Biriyani', desc:'Slow-cooked basmati with marinated chicken, whole spices and fried onions.', price:1300, unit:'kg', step:0.5, min:0.5, category:'biriyani', accent:'#A62639' },
+    { id:'mutton',  name:'Mutton Biriyani',  desc:'Tender mutton dum-cooked with saffron rice — our richest, most requested pot.', price:2000, unit:'kg', step:0.5, min:0.5, category:'biriyani', accent:'#7E1B2B' },
+    { id:'veg',     name:'Veg Biriyani',     desc:'Seasonal vegetables and paneer layered with fragrant basmati and fried cashew.', price:900, unit:'kg', step:0.5, min:0.5, category:'biriyani', accent:'#3F6B3A' },
   ];
+
+  const STARTERS = [
+    { id:'welcome-drink', name:'Welcome Drinks', desc:'Chilled fruit punch or mocktail served to guests as they arrive.', price:15, unit:'glass', step:1, min:1, category:'starter', accent:'#D9A417' },
+    { id:'popcorn-candy', name:'Popcorn & Cotton Candy Combo', desc:'Live popcorn machine + cotton candy (pink sugar candy) counter together — unlimited servings for the whole event.', price:5000, unit:'event', step:1, min:1, category:'starter', accent:'#B8860B' },
+    { id:'ice-cream', name:'Ice Cream Counter', desc:'Two-scoop counter — vanilla, strawberry & chocolate, with sprinkles.', price:60, unit:'head', step:1, min:1, category:'starter', accent:'#C2495D' },
+    { id:'beeda', name:'Beeda (Meetha Paan)', desc:'Sweet paan counter to end the meal on a fresh, festive note.', price:25, unit:'piece', step:1, min:1, category:'starter', accent:'#6B8E4E' },
+    { id:'panipuri', name:'Panipuri Counter', desc:'Live panipuri counter with tangy water, sweet chutney and masala aloo filling.', price:55, unit:'plate', step:1, min:1, category:'starter', accent:'#A62639' },
+    { id:'choc-fountain', name:'Chocolate Fountain', desc:'Flowing chocolate fountain with fruit, marshmallow and wafer dippers.', price:90, unit:'head', step:1, min:1, category:'starter', accent:'#7E1B2B' },
+    { id:'fruit-salad', name:'Fruit Salad', desc:'Fresh seasonal fruits tossed with a light honey-cream dressing.', price:50, unit:'head', step:1, min:1, category:'starter', accent:'#3F6B3A' },
+  ];
+
+  const ALL_ITEMS = [...PRODUCTS, ...STARTERS];
  
   const cardsEl = document.getElementById('cards');
+  const startersEl = document.getElementById('startersCards');
   const cart = {}; // id -> qty
- 
-  PRODUCTS.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.style.setProperty('--card-accent', p.accent);
-    card.innerHTML = `
-      <span class="num">0${i+1} / Biriyani</span>
-      <h3>${p.name}</h3>
-      <div class="desc">${p.desc}</div>
-      <div class="price-row"><span class="amt">₹${p.price}</span><span class="per">per kg</span></div>
-      <div class="qty-row">
-        <button type="button" data-act="minus">−</button>
-        <input type="number" min="0.5" step="0.5" value="1" data-qty>
-        <span class="qty-unit">KG</span>
-        <button type="button" data-act="plus">+</button>
-      </div>
-      <div class="subtotal">Subtotal: <b data-subtotal>₹${p.price}</b></div>
-      <button class="add-btn">Add to order</button>
-    `;
-    const qtyInput = card.querySelector('[data-qty]');
-    const subtotalEl = card.querySelector('[data-subtotal]');
- 
-    function updateSubtotal(){
-      let q = parseFloat(qtyInput.value);
-      if (isNaN(q) || q < 0.5) q = 0.5;
-      qtyInput.value = q;
-      subtotalEl.textContent = '₹' + Math.round(q * p.price);
-    }
-    card.querySelector('[data-act="minus"]').onclick = () => {
-      qtyInput.value = Math.max(0.5, parseFloat(qtyInput.value) - 0.5);
-      updateSubtotal();
-    };
-    card.querySelector('[data-act="plus"]').onclick = () => {
-      qtyInput.value = parseFloat(qtyInput.value) + 0.5;
-      updateSubtotal();
-    };
-    qtyInput.oninput = updateSubtotal;
- 
-    card.querySelector('.add-btn').onclick = () => {
-      const q = parseFloat(qtyInput.value);
-      cart[p.id] = (cart[p.id] || 0) + q;
-      renderCart();
-    };
- 
-    cardsEl.appendChild(card);
-  });
+
+  function buildCards(items, container, labelPrefix){
+    items.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.setProperty('--card-accent', p.accent);
+      const unitLabel = p.unit.toUpperCase();
+      card.innerHTML = `
+        <span class="num">0${i+1} / ${labelPrefix}</span>
+        <h3>${p.name}</h3>
+        <div class="desc">${p.desc}</div>
+        <div class="price-row"><span class="amt">₹${p.price}</span><span class="per">per ${p.unit}</span></div>
+        <div class="qty-row">
+          <button type="button" data-act="minus">−</button>
+          <input type="number" min="${p.min}" step="${p.step}" value="${p.min}" data-qty>
+          <span class="qty-unit">${unitLabel}</span>
+          <button type="button" data-act="plus">+</button>
+        </div>
+        <div class="subtotal">Subtotal: <b data-subtotal>₹${Math.round(p.min * p.price)}</b></div>
+        <button class="add-btn">Add to order</button>
+      `;
+      const qtyInput = card.querySelector('[data-qty]');
+      const subtotalEl = card.querySelector('[data-subtotal]');
+
+      function updateSubtotal(){
+        let q = parseFloat(qtyInput.value);
+        if (isNaN(q) || q < p.min) q = p.min;
+        qtyInput.value = q;
+        subtotalEl.textContent = '₹' + Math.round(q * p.price);
+      }
+      card.querySelector('[data-act="minus"]').onclick = () => {
+        qtyInput.value = Math.max(p.min, parseFloat(qtyInput.value) - p.step);
+        updateSubtotal();
+      };
+      card.querySelector('[data-act="plus"]').onclick = () => {
+        qtyInput.value = parseFloat(qtyInput.value) + p.step;
+        updateSubtotal();
+      };
+      qtyInput.oninput = updateSubtotal;
+
+      card.querySelector('.add-btn').onclick = () => {
+        const q = parseFloat(qtyInput.value);
+        cart[p.id] = (cart[p.id] || 0) + q;
+        renderCart();
+      };
+
+      container.appendChild(card);
+    });
+  }
+
+  buildCards(PRODUCTS, cardsEl, 'Biriyani');
+  buildCards(STARTERS, startersEl, 'Starter');
  
   const cartContent = document.getElementById('cartContent');
   const cartTotalBox = document.getElementById('cartTotal');
@@ -994,11 +1168,11 @@
     }
     let total = 0;
     cartContent.innerHTML = entries.map(([id, qty]) => {
-      const p = PRODUCTS.find(x => x.id === id);
+      const p = ALL_ITEMS.find(x => x.id === id);
       const sub = qty * p.price;
       total += sub;
       return `<div class="cart-line">
-        <div>${p.name}<div class="meta">${qty} kg × ₹${p.price}</div></div>
+        <div>${p.name}<div class="meta">${qty} ${p.unit}${qty===1?'':'s'} × ₹${p.price}</div></div>
         <div style="display:flex;align-items:center;gap:14px;">
           <span>₹${Math.round(sub)}</span>
           <button data-remove="${id}">Remove</button>
@@ -1024,10 +1198,10 @@
  
     let total = 0;
     let lines = entries.map(([id, qty]) => {
-      const p = PRODUCTS.find(x => x.id === id);
+      const p = ALL_ITEMS.find(x => x.id === id);
       const sub = qty * p.price;
       total += sub;
-      return `${p.name} — ${qty}kg × ₹${p.price} = ₹${Math.round(sub)}`;
+      return `${p.name} — ${qty} ${p.unit}${qty===1?'':'s'} × ₹${p.price} = ₹${Math.round(sub)}`;
     }).join('\n');
  
     const msg =
@@ -1067,7 +1241,7 @@ Address/date: ${addr || '-'}`;
     const out = document.getElementById('calcResult');
     if (!g || g < 1){ out.textContent = 'Enter number of guests'; return; }
     const kg = Math.ceil((g / SERVES_PER_KG) * 2) / 2; // round up to nearest 0.5kg
-    out.textContent = `≈ ${kg} kg total (₹${Math.round(kg*900)}–₹${Math.round(kg*2000)} depending on type)`;
+    out.textContent = `≈ ${kg} kg total (₹${Math.round(kg*900)}–₹${Math.round(kg*2000)} depending on type) — check Starters below for add-ons`;
   };
 
   /* ---------- KN Regulars membership ---------- */
@@ -1275,6 +1449,29 @@ Address/date: ${addr || '-'}`;
     chatInput.style.height = 'auto';
     chatInput.style.height = Math.min(chatInput.scrollHeight, 90) + 'px';
   });
+
+  /* ---------- FAQ accordion ---------- */
+  document.querySelectorAll('.faq-item').forEach((item) => {
+    item.querySelector('.faq-q').onclick = () => {
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    };
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  document.querySelectorAll('.menu, .reviews, .faq-section, .member-section, .order-section').forEach(el => {
+    el.classList.add('reveal');
+  });
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
  
 </body>
